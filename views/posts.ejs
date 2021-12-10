@@ -1,0 +1,63 @@
+<html lang="en"> <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="stylesheet" href="/style.css">
+    <title>Posts</title>
+    </head>
+
+<body>
+   <!--  <h1>Posts page</h1> -->
+    <%- include('./partials/navbar.ejs') %>
+    <div class="posts_list"> 
+        <h2>All posts</h2>
+        <% if (posts.length > 0) { %>
+        <% posts.forEach(post => { %>
+            <div class="singlepost-content">
+                <a class="singlepost" href="/singlepost/<%= post.id %>"> 
+                    <h3 class="title">
+                        <%= post.title %> 
+                    </h3>
+                </a>
+                <p class="body"> 
+                    <img src ="<%= post.urllink %>" alt="EJS", width="400" height ="400"> <br>
+                    <%= post.body %> <br><br>
+                    
+<!--                     <p> Likes: <%=post.likes %></p> <br>
+
+                    <button method="POST">Like</button> -->
+
+                    <button class="btn">Like</button>
+                    <p>Likes: <a class="clicks">0</a></p>
+
+                </p> 
+                
+
+            </div>
+                <% }) %>
+                <% } else { %>
+                <p>You did not post anything...</p>
+                <% } %> 
+    </div>
+
+    <script>
+
+        const btn = document.querySelector('.btn');
+        btn.onclick = Counter;
+        const clicks = document.querySelector('.clicks');
+        clicks.id = document.querySelector('clicks');
+
+        var a = 0;
+
+        function Counter() {
+            a += 1;
+            clicks.innerHTML = a;
+            btn.disabled = true;
+}
+    </script>
+
+    <%- include('./partials/footer.ejs') %>
+
+    </script>
+    </body> 
+    </html>
